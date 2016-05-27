@@ -1,0 +1,124 @@
+<template name="articlelist">
+    <div class="container">
+        <div class="row">
+            <h1>Artikelliste</h1>
+            <table class="table table-bordered table-striped" style="margin-top: 20px;">
+                <thead>
+                    <tr>
+                        <th>Navn</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>{{#each Article}}
+                    <tr>
+                        <td>{{name}} {{#if active}}(active){{/if}}</td>
+                        <td>
+                            <button id="edit" type="button" class="btn btn-success">Edit</button>
+                        </td>
+                        <td>
+                            <button id="delete" type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <button id="create" type="button" class="btn btn-primary">Opret kategori</button>
+        </div>
+    </div>
+</template>
+
+<template name="articleedit">
+    <div class="container">
+        <div class="row">
+            <h1>Rediger artikel</h1>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-7">{{#with article}}
+                        <form>
+                            <div class="form-group">Active
+                                <input id="active" type="checkbox" checked="{{active}}">
+                            </div>
+                            <div class="form-group">
+                                <select id="category" class="form-control">
+                                    {{#each categories}}
+                                    <option {{selected}} value="{{_id}}">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                Navn:
+                                <input type="text" id="name" value="{{name}}" tabindex="1" class="form-control" placeholder="navn" required>
+                            </div>
+                            <div class="form-group">
+                                Tekst:
+                                <textarea rows="10" id="info" tabindex="2" class="form-control" placeholder="description">{{info}}</textarea>
+                            </div>
+                            <button id="cancel" type="button" class="btn btn-danger">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Done</button>
+                        </form>
+                        {{/with}}
+                    </div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-2">
+                        <h4>Tags</h4>
+                        <div class="form-group">
+                            {{#each tags}}
+                            <div>
+                                <input type="checkbox" name="tags" value="{{_id}}" {{checked}}/> {{name}}
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="articlecreate">
+    <div class="container">
+        <div class="row">
+            <h1>Opret artikel</h1>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <form>
+                            <div class="form-group">Active
+                                <input id="active" type="checkbox">
+                            </div>
+                            <div class="form-group">
+                                <select id="category" class="form-control">
+                                    {{#each categories}}
+                                    <option {{selected}} value="{{_id}}">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                Navn:
+                                <input type="text" id="name" tabindex="1" class="form-control" placeholder="navn" required>
+                            </div>
+                            <div class="form-group">
+                                Tekst:
+                                <textarea rows="10" id="info" tabindex="2" class="form-control" placeholder="description"></textarea>
+                            </div>
+                            <button id="cancel" type="button" class="btn btn-danger">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Done</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-2">
+                        <h4>Tags</h4>
+                        <div class="form-group">
+                            {{#each tags}}
+                            <div>
+                                <input type="checkbox" name="tags" value="{{_id}}" {{checked}}/> {{name}}
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

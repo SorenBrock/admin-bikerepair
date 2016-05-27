@@ -1,0 +1,80 @@
+<template name="taglist">
+<div class="container">
+    <div class="row">
+        <h1>Tagliste</h1>
+        <table class="table table-bordered table-striped" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th>Navn</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>{{#each Tag}}
+                <tr>
+                    <td>{{name}} {{#if active}}(active){{/if}}</td>
+                    <td>
+                        <button id="editTag" type="button" class="btn btn-success">Edit</button>
+                    </td>
+                    <td>
+                        <button id="deleteTag" type="button" class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <button id="createTag" type="button" class="btn btn-primary">Opret tag</button>
+    </div>
+</div>
+</template>
+
+<template name="tagedit">
+    <div class="container">
+        <div class="row">
+            <h1>Rediger tag</h1>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-4">{{#with tag}}
+                        <form>
+                            <div class="form-group">Active
+                                <input id="active" type="checkbox" checked="{{active}}">
+                            </div>
+                            <div class="form-group">
+                                Navn:
+                                <input type="text" id="name" value="{{name}}" tabindex="1" class="form-control" placeholder="navn" required>
+                            </div>
+                            <button id="cancel" type="button" class="btn btn-danger">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Done</button>
+                        </form>
+                        {{/with}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="tagcreate">
+    <div class="container">
+        <div class="row">
+            <h1>Opret tag</h1>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <form>
+                            <div class="form-group">Active
+                                <input id="active" type="checkbox">
+                            </div>
+                            <div class="form-group">
+                                Navn:
+                                <input type="text" id="name" tabindex="1" class="form-control" placeholder="navn" required>
+                            </div>
+                            <button id="cancel" type="button" class="btn btn-danger">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Done</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
